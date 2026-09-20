@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initialscale=
+1.0">
+<title>ACE e-Book Store - Cart</title>
+<link rel="icon" href="logo.png" type="image/png">
+<link rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/fontawesome/
+6.0.0/css/all.min.css">
+<style>
+body {
+font-family: Arial, sans-serif;
+background-color: #f4f4f4;
+text-align: center;
+margin: 0;
+padding: 0;
+}
+.navbar {
+background-color: #333;
+overflow: hidden;
+padding: 10px 20px;
+display: flex;
+justify-content: space-between; 
+align-items: center;
+}
+.navbar-links {
+display: flex;
+gap: 15px;
+}
+.navbar a {
+color: white;
+text-decoration: none;
+padding: 14px 20px;
+display: inline-block;
+}
+.navbar a:hover {
+background-color: rgb(242, 34, 34);
+}
+.cart-container {
+position: relative;
+display: flex;
+align-items: center;
+}
+.cart-icon {
+color: white;
+font-size: 22px;
+margin-left: 5px;
+}
+#cart-count {
+background-color: red;
+color: white;
+font-size: 12px;
+border-radius: 50%;
+padding: 4px 8px;
+position: absolute;
+top: -5px;
+right: -10px;
+}
+table {
+width: 90%;
+background-color: #ffe479;
+margin-top: 20px;
+border-collapse: collapse;
+}
+th {
+background-color: #ff7c5b;
+padding: 10px;
+color: white;
+}
+td {
+padding: 10px;
+}
+hr {
+border: 1px solid #996600;
+}
+.total {
+color: #996600;
+font-weight: bold;
+}
+.pay-button {
+background-color: #ff7c5b;
+color: white;
+border: none;
+padding: 10px 15px;
+cursor: pointer;
+border-radius: 5px;
+}
+.pay-button:hover {
+background-color: #ff5722;
+}
+</style>
+</head>
+<body>
+<div class="navbar">
+<div class="navbar-links">
+<a href="index.html">Home</a>
+<a href="catalog.html">Catalog</a>
+<a href="login.html">Login</a>
+</div>
+<div class="cart-container">
+<a href="cart.html">
+<i class="fas fa-shopping-cart cart-icon"></i>
+<span id="cart-count">0</span>
+</a>
+</div>
+</div>
+<!-- Shopping Cart Table -->
+<h3>Shopping Cart</h3>
+<table align="center">
+<tbody>
+<tr>
+<th width="40%"><hr>Book Name<hr></th>
+            <th width="20%"><hr>Price<hr></th>
+            <th width="20%"><hr>Quantity<hr></th>
+            <th width="20%"><hr>Total<hr></th>
+        </tr>
+
+        <tr>
+            <td>Java Programming</td>
+            <td>₹500</td>
+            <td>
+                <input type="number" value="1" min="1" id="qty1" onchange="updateTotal()">
+            </td>
+            <td id="total1">₹500</td>
+        </tr>
+
+        <tr>
+            <td>Python Programming</td>
+            <td>₹600</td>
+            <td>
+                <input type="number" value="1" min="1" id="qty2" onchange="updateTotal()">
+            </td>
+            <td id="total2">₹600</td>
+        </tr>
+
+        <tr>
+            <td colspan="3" class="total">Grand Total</td>
+            <td class="total" id="grandTotal">₹1100</td>
+        </tr>
+    </tbody>
+</table>
+
+<br>
+<button class="pay-button" onclick="payNow()">Proceed to Payment</button>
+
+<script>
+function updateTotal() {
+    let price1 = 500;
+    let price2 = 600;
+
+    let qty1 = parseInt(document.getElementById("qty1").value);
+    let qty2 = parseInt(document.getElementById("qty2").value);
+
+    let total1 = price1 * qty1;
+    let total2 = price2 * qty2;
+
+    document.getElementById("total1").innerHTML = "₹" + total1;
+    document.getElementById("total2").innerHTML = "₹" + total2;
+
+    let grandTotal = total1 + total2;
+    document.getElementById("grandTotal").innerHTML = "₹" + grandTotal;
+
+    document.getElementById("cart-count").innerHTML = qty1 + qty2;
+}
+
+function payNow() {
+    let total = document.getElementById("grandTotal").innerText;
+    alert("Thank you for your purchase!\nTotal Amount: " + total);
+}
+
+// Initialize totals when page loads
+updateTotal();
+</script>
+
+</body>
+</html>
